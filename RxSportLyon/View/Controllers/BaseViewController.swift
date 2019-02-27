@@ -14,11 +14,6 @@ class BaseViewController<T: BaseViewModel>: UIViewController {
     var viewModel: T! = nil
     var disposeBag : DisposeBag! = nil
     
-    func setup(disposeBag : DisposeBag, viewModel : T){
-        self.disposeBag = disposeBag
-        self.viewModel = viewModel
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

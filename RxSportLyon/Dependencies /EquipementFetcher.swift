@@ -8,48 +8,59 @@
 
 import Foundation
 import Swinject
+import RxSwift
+
+// EquipementFetcher - single-responsibility : request and parse data from OpenDataSoft API.
+
+enum FetcherError: Error {
+    case dataEmpty
+    case failDecoding
+    case networkError(Error)
+}
 
 protocol Fetcher {
-    typealias ResponseCompletion = (EquipementResponse?) -> Void
-    func fetch(response: @escaping ResponseCompletion)
+    func fetch() -> Observable<EquipementResponse>
 }
 
 struct EquipementFetcher  {
     let networking: Networking
-    init(networking: Networking) {
+    let parser: Parser
+    init(networking: Networking, parser : Parser) {
         self.networking = networking
+        self.parser = parser
     }
 }
 
 extension EquipementFetcher : Fetcher {
-    
-    func fetch(response: @escaping ResponseCompletion) {
-        networking.request(from: OpenDataSoft.sportEquipement) { data, error in
-            if let error = error {
-                print(error.localizedDescription)
-                response(nil)
+    func fetch() -> Observable<EquipementResponse> {
+        return Observable.create { observer in
+            self.networking.request(from: OpenDataSoft.sportEquipement) { data, error in
+                if let error = error {
+                    observer.onError(FetcherError.networkError(error))
+                } else {
+                    let decodeResult = self.parser.decodeJSON(type: EquipementResponse.self, from: data)
+                    if let error = decodeResult.1 {
+                        observer.onError(error)
+                    }
+                    if let response = decodeResult.0 {
+                        observer.onNext(response)
+                        observer.onCompleted()
+                    }
+                }
             }
-            let decoded = self.decodeJSON(type: EquipementResponse.self, from: data)
-            if let decoded = decoded {
-                print("Equipements returned : \(decoded.data)")
-            }
-            response(decoded)
+            return Disposables.create()
         }
     }
-    
-    private func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
-        let decoder = JSONDecoder()
-        guard let data = from, let response = try? decoder.decode(type.self, from: data) else { return nil }
-        return response
-    }
-    
 }
+
+// MARK : Assembly
 
 class EquipementFetcherAssembly : Assembly {
     func assemble(container: Container) {
         container.register(EquipementFetcher.self, factory: { r in
             let networking = HTTPNetworking()
-            return EquipementFetcher(networking: networking)
-        }).inObjectScope(.weak) // weak : when not being used, kill networking.
+            let parser = r.resolve(Parser.self)
+            return EquipementFetcher(networking: networking, parser : parser!)
+        }).inObjectScope(.weak)
     }
 }

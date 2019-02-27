@@ -8,19 +8,20 @@
 
 import Foundation
 
-class Equipement : Codable {
+struct Equipement : Codable {
+    fileprivate let fields : EquipementFields
+}
+
+struct EquipementFields : Codable {
     
     fileprivate let name : String
-    fileprivate let coordinate : [Double]!
-    
-    init(name : String, coordinate : [Double]) {
-        self.name = name
-        self.coordinate = coordinate
-    }
-    
+    fileprivate let coordinates : [Double]
+
     enum CodingKeys: String, CodingKey {
         case name = "equipementtypelib"
-        case coordinate = "coordonnees"
+        case coordinates = "coordonnees"
     }
     
 }
+
+

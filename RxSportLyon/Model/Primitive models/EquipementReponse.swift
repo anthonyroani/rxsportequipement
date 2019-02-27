@@ -10,4 +10,7 @@ import Foundation
 
 class EquipementResponse: Codable {
     let data: [Equipement]
+    enum CodingKeys: String, CodingKey {
+        case data = "records"
+    }
 }

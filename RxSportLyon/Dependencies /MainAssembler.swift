@@ -17,7 +17,9 @@ class MainAssembler {
     private let assembler = Assembler(container: SwinjectStoryboard.defaultContainer)
     
     init() {
+        assembler.apply(assembly: ParserAssembly())
         assembler.apply(assembly: EquipementFetcherAssembly())
+        assembler.apply(assembly: MapConfiguratorAssembly())
         assembler.apply(assembly: MapViewModelAssembly())
         assembler.apply(assembly: MapViewControllerAssembly())
     }
