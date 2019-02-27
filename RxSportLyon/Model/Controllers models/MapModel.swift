@@ -8,13 +8,6 @@
 
 import Foundation
 
-class MapModel {
-    
+struct MapModel {
     var equipements = [Equipement]()
-    
-    convenience init(equipements : [Equipement]) {
-        self.init()
-        self.equipements = equipements
-    }
-    
 }

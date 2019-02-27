@@ -38,7 +38,6 @@ class MapViewController : BaseViewController<MapViewModel> {
             .bind(to: viewModel.sliderValue)
             .disposed(by: disposeBag)
         
-        // Cold observer.
         _ = reloadButton.rx.tap.subscribe({ [weak self] _ in
             self?.viewModel.reloadMap()
         })

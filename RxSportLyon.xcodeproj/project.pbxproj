@@ -117,9 +117,9 @@
 		249D5CAD221DB16300AFA000 /* RxSportLyon */ = {
 			isa = PBXGroup;
 			children = (
-				24C2AE74222607F70060D721 /* Utils */,
 				249D5CAE221DB16300AFA000 /* AppDelegate.swift */,
 				249D5CBA221DB16600AFA000 /* Info.plist */,
+				24C2AE74222607F70060D721 /* Utils */,
 				24F5F0DE22244A600054F9CF /* Dependencies  */,
 				249D5CD3221DB3B000AFA000 /* ViewModel */,
 				249D5CD1221DB3A600AFA000 /* Model */,
