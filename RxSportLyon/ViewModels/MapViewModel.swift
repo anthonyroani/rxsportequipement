@@ -79,7 +79,7 @@ extension MapViewModel: MapViewModeling {
         guard let formattedValue = numberFormatter.string(from: NSNumber(value: value)) else {
             return nil
         }
-        return formattedValue
+        return "\(formattedValue) \(NSLocalizedString("aroundKilometers", comment: "Distance description"))"
     }
 
 }
