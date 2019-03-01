@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
-    func setupWindow(){
+    func setupWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
         let storyboard = SwinjectStoryboard.create(name: "Main", bundle: nil)

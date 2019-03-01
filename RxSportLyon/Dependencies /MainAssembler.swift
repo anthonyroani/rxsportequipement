@@ -11,11 +11,11 @@ import Swinject
 import SwinjectStoryboard
 
 class MainAssembler {
-    var resolver : Resolver {
+    var resolver: Resolver {
         return assembler.resolver
     }
     private let assembler = Assembler(container: SwinjectStoryboard.defaultContainer)
-    
+
     init() {
         assembler.apply(assembly: ParserAssembly())
         assembler.apply(assembly: EquipementFetcherAssembly())

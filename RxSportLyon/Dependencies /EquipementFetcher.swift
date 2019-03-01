@@ -22,45 +22,63 @@ protocol Fetcher {
     func fetch() -> Observable<EquipementResponse>
 }
 
-struct EquipementFetcher  {
+struct EquipementFetcher {
+
     let networking: Networking
     let parser: Parser
-    init(networking: Networking, parser : Parser) {
+    let disposeBag: DisposeBag
+
+    init(networking: Networking, parser: Parser, disposeBag: DisposeBag) {
         self.networking = networking
         self.parser = parser
+        self.disposeBag = disposeBag
     }
+
 }
 
-extension EquipementFetcher : Fetcher {
+extension EquipementFetcher: Fetcher {
+
     func fetch() -> Observable<EquipementResponse> {
+
         return Observable.create { observer in
-            self.networking.request(from: OpenDataSoft.sportEquipement) { data, error in
-                if let error = error {
-                    observer.onError(FetcherError.networkError(error))
-                } else {
-                    let decodeResult = self.parser.decodeJSON(type: EquipementResponse.self, from: data)
-                    if let error = decodeResult.1 {
-                        observer.onError(error)
-                    }
-                    if let response = decodeResult.0 {
-                        observer.onNext(response)
-                        observer.onCompleted()
-                    }
-                }
+
+            guard let jsonObservable = self.networking.getJSON(from: OpenDataSoft.sportEquipement) else {
+                observer.onError(NetworkingError.invalidURL)
+                return Disposables.create()
             }
+
+            jsonObservable
+                .subscribe(
+                    onNext: { json in
+                        do {
+                            let data = try JSONSerialization.data(withJSONObject: json)
+                            if let decoded = try self.parser.decodeJSON(type: EquipementResponse.self, from: data) {
+                                observer.onNext(decoded)
+                                observer.onCompleted()
+                            }
+                        } catch let error {
+                            observer.onError(error)
+                        }
+                    }, onError: { error in
+                        observer.onError(error)
+                    })
+                .disposed(by: self.disposeBag)
+
             return Disposables.create()
+
         }
     }
 }
 
-// MARK : Assembly
+// MARK: Assembly
 
-class EquipementFetcherAssembly : Assembly {
+class EquipementFetcherAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(EquipementFetcher.self, factory: { r in
+        container.register(EquipementFetcher.self, factory: { resolver in
             let networking = HTTPNetworking()
-            let parser = r.resolve(Parser.self)
-            return EquipementFetcher(networking: networking, parser : parser!)
+            let parser = resolver.resolve(Parser.self)
+            let disposeBag = DisposeBag()
+            return EquipementFetcher(networking: networking, parser: parser!, disposeBag: disposeBag)
         }).inObjectScope(.weak)
     }
 }

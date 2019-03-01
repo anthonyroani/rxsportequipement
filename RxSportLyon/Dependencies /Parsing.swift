@@ -12,35 +12,34 @@ import Swinject
 // Parser - single-responsibility : Decode JSON Data to a type object
 
 protocol Parsing {
-    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> (T?, Error?)
+    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) throws -> (T?)
 }
 
 struct Parser {
-    let decoder : JSONDecoder
-    init(decoder : JSONDecoder) {
+    let decoder: JSONDecoder
+    init(decoder: JSONDecoder) {
         self.decoder = decoder
     }
 }
 
-extension Parser : Parsing {
-    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> (T?, Error?) {
+extension Parser: Parsing {
+    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) throws -> (T?) {
         guard let data = from else {
-            return (nil, FetcherError.dataEmpty)
+            throw FetcherError.dataEmpty
         }
         do {
-            let response = try decoder.decode(type.self, from: data)
-            return (response, nil)
+            return try decoder.decode(type.self, from: data)
         } catch let error {
-            return (nil, error)
+            throw error
         }
     }
 }
 
-class ParserAssembly : Assembly {
+class ParserAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(Parser.self, factory: { r in
+        container.register(Parser.self, factory: { _ in
             let jsonDecoder = JSONDecoder()
             return Parser(decoder: jsonDecoder)
-        }).inObjectScope(.weak) 
+        }).inObjectScope(.weak)
     }
 }

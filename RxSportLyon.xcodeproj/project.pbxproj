@@ -18,10 +18,8 @@
 		24C2AE7822261A800060D721 /* MapConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C2AE7722261A800060D721 /* MapConfigurator.swift */; };
 		24F5F0C2221DBAB50054F9CF /* Equipement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0C1221DBAB50054F9CF /* Equipement.swift */; };
 		24F5F0C9221DBF6D0054F9CF /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0C8221DBF6D0054F9CF /* MapViewModel.swift */; };
-		24F5F0D4221DCD6A0054F9CF /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0D3221DCD6A0054F9CF /* MapModel.swift */; };
 		24F5F0D7221DE1E20054F9CF /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0D6221DE1E20054F9CF /* RoundedButton.swift */; };
 		24F5F0D92224311A0054F9CF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0D82224311A0054F9CF /* BaseViewController.swift */; };
-		24F5F0DB222431800054F9CF /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0DA222431800054F9CF /* BaseViewModel.swift */; };
 		24F5F0E022244A7C0054F9CF /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0DF22244A7C0054F9CF /* Networking.swift */; };
 		24F5F0E222244ADF0054F9CF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0E122244ADF0054F9CF /* Endpoint.swift */; };
 		24F5F0E422244DB80054F9CF /* EquipementReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5F0E322244DB80054F9CF /* EquipementReponse.swift */; };
@@ -59,10 +57,8 @@
 		24C2AE7722261A800060D721 /* MapConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConfigurator.swift; sourceTree = "<group>"; };
 		24F5F0C1221DBAB50054F9CF /* Equipement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipement.swift; sourceTree = "<group>"; };
 		24F5F0C8221DBF6D0054F9CF /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		24F5F0D3221DCD6A0054F9CF /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		24F5F0D6221DE1E20054F9CF /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		24F5F0D82224311A0054F9CF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		24F5F0DA222431800054F9CF /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		24F5F0DF22244A7C0054F9CF /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		24F5F0E122244ADF0054F9CF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		24F5F0E322244DB80054F9CF /* EquipementReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipementReponse.swift; sourceTree = "<group>"; };
@@ -121,9 +117,9 @@
 				249D5CBA221DB16600AFA000 /* Info.plist */,
 				24C2AE74222607F70060D721 /* Utils */,
 				24F5F0DE22244A600054F9CF /* Dependencies  */,
-				249D5CD3221DB3B000AFA000 /* ViewModel */,
-				249D5CD1221DB3A600AFA000 /* Model */,
-				249D5CD2221DB3AA00AFA000 /* View */,
+				249D5CD3221DB3B000AFA000 /* ViewModels */,
+				249D5CD1221DB3A600AFA000 /* Models */,
+				249D5CD2221DB3AA00AFA000 /* Views */,
 			);
 			path = RxSportLyon;
 			sourceTree = "<group>";
@@ -146,16 +142,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		249D5CD1221DB3A600AFA000 /* Model */ = {
+		249D5CD1221DB3A600AFA000 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				24F5F0D2221DCD5C0054F9CF /* Controllers models */,
-				24F5F0D1221DCD4F0054F9CF /* Primitive models */,
+				24F5F0D1221DCD4F0054F9CF /* Primitive Models */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		249D5CD2221DB3AA00AFA000 /* View */ = {
+		249D5CD2221DB3AA00AFA000 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				24F5F0D5221DE1B80054F9CF /* Custom UIViews */,
@@ -163,16 +158,15 @@
 				24F5F0C5221DBF1D0054F9CF /* Storyboards */,
 				249D5CCE221DB38D00AFA000 /* Controllers */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		249D5CD3221DB3B000AFA000 /* ViewModel */ = {
+		249D5CD3221DB3B000AFA000 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				24F5F0C8221DBF6D0054F9CF /* MapViewModel.swift */,
-				24F5F0DA222431800054F9CF /* BaseViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		24C2AE74222607F70060D721 /* Utils */ = {
@@ -200,22 +194,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		24F5F0D1221DCD4F0054F9CF /* Primitive models */ = {
+		24F5F0D1221DCD4F0054F9CF /* Primitive Models */ = {
 			isa = PBXGroup;
 			children = (
 				24F5F0C1221DBAB50054F9CF /* Equipement.swift */,
 				24F5F0E122244ADF0054F9CF /* Endpoint.swift */,
 				24F5F0E322244DB80054F9CF /* EquipementReponse.swift */,
 			);
-			path = "Primitive models";
-			sourceTree = "<group>";
-		};
-		24F5F0D2221DCD5C0054F9CF /* Controllers models */ = {
-			isa = PBXGroup;
-			children = (
-				24F5F0D3221DCD6A0054F9CF /* MapModel.swift */,
-			);
-			path = "Controllers models";
+			path = "Primitive Models";
 			sourceTree = "<group>";
 		};
 		24F5F0D5221DE1B80054F9CF /* Custom UIViews */ = {
@@ -269,7 +255,8 @@
 				249D5CA7221DB16300AFA000 /* Sources */,
 				249D5CA8221DB16300AFA000 /* Frameworks */,
 				249D5CA9221DB16300AFA000 /* Resources */,
-				07D86E28FDEC2E5026C50A3A /* [CP] Embed Pods Frameworks */,
+				16AE7BB4D63687AB94CEB692 /* [CP] Embed Pods Frameworks */,
+				245558A82228BA4E00EEDF44 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -358,7 +345,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07D86E28FDEC2E5026C50A3A /* [CP] Embed Pods Frameworks */ = {
+		16AE7BB4D63687AB94CEB692 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,8 +354,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxSportLyon/Pods-RxSportLyon-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -380,8 +365,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -393,6 +376,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxSportLyon/Pods-RxSportLyon-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		245558A82228BA4E00EEDF44 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		C0F5AF98A667938C70602503 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -457,9 +457,7 @@
 				24F5F0D7221DE1E20054F9CF /* RoundedButton.swift in Sources */,
 				24F5F0E422244DB80054F9CF /* EquipementReponse.swift in Sources */,
 				24C2AE76222608000060D721 /* Extensions.swift in Sources */,
-				24F5F0DB222431800054F9CF /* BaseViewModel.swift in Sources */,
 				24F5F0D92224311A0054F9CF /* BaseViewController.swift in Sources */,
-				24F5F0D4221DCD6A0054F9CF /* MapModel.swift in Sources */,
 				24F5F0E222244ADF0054F9CF /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

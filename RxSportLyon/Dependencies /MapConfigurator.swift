@@ -15,27 +15,27 @@ protocol MapConfiguring {
     func getCurrentLocation()
 }
 
-class MapConfigurator : NSObject {
-    
-    let locationManager : CLLocationManager
-    let disposeBag : DisposeBag
-    
-    let regionRadius: CLLocationDistance = 1000
-    let locationValue : Variable<CLLocationCoordinate2D?> = Variable(nil)
+class MapConfigurator: NSObject {
 
-    init(locationManager : CLLocationManager, disposeBag : DisposeBag) {
+    let locationManager: CLLocationManager
+    let disposeBag: DisposeBag
+
+    let regionRadius: CLLocationDistance = 1000
+    let locationValue: Variable<CLLocationCoordinate2D?> = Variable(nil)
+
+    init(locationManager: CLLocationManager, disposeBag: DisposeBag) {
         self.locationManager = locationManager
         self.disposeBag = disposeBag
         super.init()
     }
-    
+
 }
 
-// MARK : MapConfiguring protocol
+// MARK: MapConfiguring protocol
 
-extension MapConfigurator : MapConfiguring {
-    
-    func getCurrentLocation(){
+extension MapConfigurator: MapConfiguring {
+
+    func getCurrentLocation() {
         self.locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -43,23 +43,23 @@ extension MapConfigurator : MapConfiguring {
             locationManager.startUpdatingLocation()
         }
     }
-    
+
 }
 
-// MARK : CLLocationManagerDelegate
+// MARK: CLLocationManagerDelegate
 
-extension MapConfigurator : CLLocationManagerDelegate {
+extension MapConfigurator: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location : CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         self.locationValue.value = location
     }
 }
 
-// MARK : Assembly
+// MARK: Assembly
 
-class MapConfiguratorAssembly : Assembly {
+class MapConfiguratorAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(MapConfigurator.self, factory: { r in
+        container.register(MapConfigurator.self, factory: { _ in
             let locationManager = CLLocationManager()
             let disposeBag = DisposeBag()
             return MapConfigurator(locationManager: locationManager, disposeBag: disposeBag)

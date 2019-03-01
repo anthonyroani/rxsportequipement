@@ -17,21 +17,21 @@ class BasicTests: XCTestCase {
     // MARK: - Boilerplate methods
 
     override func setUp() {
-        
-        container.register([Equipement].self) { resolver in
+
+        container.register([Equipement].self) { _ in
             return [
                 Equipement(name: "Salle multisports", coordinate: [45.75696, 4.82158]),
                 Equipement(name: "Terrain de basket-ball", coordinate: [45.76757, 4.83038]),
                 Equipement(name: "Terrain de volley-ball", coordinate: [45.76781, 4.8303])
             ]
         }
-        
+
         container.register(EquipementResponse.self) { resolver in
             let equipements = resolver.resolve([Equipement].self)!
             return EquipementResponse(data: equipements)
         }
     }
-    
+
     // MARK: - Tests
 
     func testEquipementsCount() {
@@ -42,5 +42,5 @@ class BasicTests: XCTestCase {
     override func tearDown() {
         container.removeAll()
     }
-    
+
 }

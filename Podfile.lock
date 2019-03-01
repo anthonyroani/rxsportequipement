@@ -1,15 +1,10 @@
 PODS:
-  - Alamofire (4.8.1)
-  - RxAlamofire (4.3.0):
-    - RxAlamofire/Core (= 4.3.0)
-  - RxAlamofire/Core (4.3.0):
-    - Alamofire (~> 4.5)
-    - RxSwift (~> 4)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
+  - SwiftLint (0.30.1)
   - Swinject (2.5.0)
   - SwinjectAutoregistration (2.5.0):
     - Swinject (~> 2.5)
@@ -17,34 +12,32 @@ PODS:
     - Swinject (~> 2.5)
 
 DEPENDENCIES:
-  - RxAlamofire
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
+  - SwiftLint
   - Swinject (~> 2.5.0)
   - SwinjectAutoregistration (= 2.5.0)
   - SwinjectStoryboard
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - RxAlamofire
     - RxAtomic
     - RxCocoa
     - RxSwift
+    - SwiftLint
     - Swinject
     - SwinjectAutoregistration
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
   SwinjectAutoregistration: 0502a16e5f5baf181be80dc9510e0efa29130485
   SwinjectStoryboard: 688f096033103e66ffcf6ca678211acd7d7be505
 
-PODFILE CHECKSUM: c30ba48020d4b2ba3e8c2b645bd626e2bc43ebb5
+PODFILE CHECKSUM: 1583c65bf2c8af79dc2abbeaf67bb7baa98915cb
 
 COCOAPODS: 1.6.0.beta.2
