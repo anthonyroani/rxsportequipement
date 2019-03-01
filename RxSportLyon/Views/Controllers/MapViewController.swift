@@ -29,7 +29,6 @@ class MapViewController: BaseViewController<MapViewModel> {
     // MARK: Bindings & Callbacks
 
     override func configureBindings(_ viewModel: MapViewModel) {
-
         reloadButton.rx.tap
             .subscribe({ [weak self] _ in
                 self?.viewModel.reloadMap()

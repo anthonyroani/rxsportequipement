@@ -18,11 +18,13 @@ protocol MapViewUI {
     var modelValue: Variable<[Equipement]?> { get }
 }
 
-protocol MapViewModeling {
+private protocol MapViewModeling {
     func reloadMap()
     func setup()
     func sliderValueFormatted(from value: Float) -> String?
 }
+
+// MARK: MapViewModel and MapViewUI
 
 class MapViewModel: MapViewUI {
 
@@ -32,10 +34,10 @@ class MapViewModel: MapViewUI {
     var isLoadingValue: Variable<Bool> = Variable(false)
     var modelValue: Variable<[Equipement]?> = Variable(nil)
 
-    let disposeBag: DisposeBag
-    let fetcher: EquipementFetcher
-    let mapConfigurator: MapConfigurator
-    let numberFormatter: NumberFormatter
+    private let disposeBag: DisposeBag
+    private let fetcher: EquipementFetcher
+    private let numberFormatter: NumberFormatter
+    public let mapConfigurator: MapConfigurator
 
     init(fetcher: EquipementFetcher,
          mapConfigurator: MapConfigurator,
@@ -51,13 +53,9 @@ class MapViewModel: MapViewUI {
 
 }
 
-extension MapViewModel: MapViewModeling {
+// MARK: MapViewModeling
 
-    internal func setup() {
-        sliderValue.asObservable().subscribe(onNext: { [weak self] value in
-            self?.sliderFormattedValue.value = self?.sliderValueFormatted(from: value)
-        }).disposed(by: disposeBag)
-    }
+extension MapViewModel: MapViewModeling {
 
     open func reloadMap() {
         isLoadingValue.value = true
@@ -75,7 +73,18 @@ extension MapViewModel: MapViewModeling {
         ).disposed(by: disposeBag)
     }
 
-    internal func sliderValueFormatted(from value: Float) -> String? {
+    /// When slider value change, set formatted value into `sliderFormattedValue` and notify controller.
+    fileprivate func setup() {
+        sliderValue.asObservable().subscribe(onNext: { [weak self] value in
+            self?.sliderFormattedValue.value = self?.sliderValueFormatted(from: value)
+        }).disposed(by: disposeBag)
+    }
+    
+    /// Converts a `Float` value into a readable `String` for the `UISlider` of the controller.
+    ///
+    /// - Parameter value: `Float` representation of the slider value
+    /// - Returns: `String` representation of the slider title `UILabel`
+    fileprivate func sliderValueFormatted(from value: Float) -> String? {
         guard let formattedValue = numberFormatter.string(from: NSNumber(value: value)) else {
             return nil
         }
@@ -100,7 +109,6 @@ class MapViewModelAssembly: Assembly {
                 numberFormatter: numberFormatter,
                 disposeBag: disposeBag
             )
-
         }).inObjectScope(.weak)
     }
 }

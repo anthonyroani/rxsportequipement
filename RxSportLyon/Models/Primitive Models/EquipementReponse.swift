@@ -15,5 +15,4 @@ struct EquipementResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case data = "records"
     }
-
 }
