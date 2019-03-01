@@ -15,7 +15,12 @@ protocol MapConfiguring {
     func getCurrentLocation()
 }
 
-class MapConfigurator: NSObject {
+protocol MapConfiguratorTools {
+    var regionRadius: CLLocationDistance { get }
+    var locationValue: Variable<CLLocationCoordinate2D?> { get }
+}
+
+class MapConfigurator: NSObject, MapConfiguratorTools {
 
     let locationManager: CLLocationManager
     let disposeBag: DisposeBag
