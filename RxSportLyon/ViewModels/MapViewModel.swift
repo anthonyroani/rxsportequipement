@@ -16,7 +16,7 @@ protocol MapViewUI {
     var sliderValue: Variable<Float> { get }
     var isLoadingValue: Variable<Bool> { get }
     var errorMessageValue: Variable<String?> { get }
-    var modelValue: Single<[MKPointAnnotation]> { get }
+    var modelValue: Variable<[MKPointAnnotation]> { get }
 }
 
 private protocol MapViewModeling {
@@ -34,7 +34,7 @@ class MapViewModel: MapViewUI {
     var sliderFormattedValue: Variable<String?> = Variable(nil)
     var errorMessageValue: Variable<String?> = Variable(nil)
     var isLoadingValue: Variable<Bool> = Variable(false)
-    var modelValue: Single<[MKPointAnnotation]> = Single.just([])
+    var modelValue: Variable<[MKPointAnnotation]> = Variable([])
 
     private let disposeBag: DisposeBag
     private let fetcher: EquipementFetcher
@@ -81,12 +81,12 @@ extension MapViewModel: MapViewModeling {
         annotationPointsSingle().subscribe(
             onSuccess: { [weak self] annotationPoints in
                 self?.isLoadingValue.value = false
-                self?.modelValue = Single.just(annotationPoints)
+                self?.modelValue.value = annotationPoints
             },
             onError: { [weak self] error in
                 self?.errorMessageValue.value = error.localizedDescription
                 self?.isLoadingValue.value = false
-                self?.modelValue = Single.error(error)
+                self?.modelValue.value = []
             }
         ).disposed(by: disposeBag)
     }

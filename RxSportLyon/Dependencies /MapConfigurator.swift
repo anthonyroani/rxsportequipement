@@ -25,7 +25,7 @@ class MapConfigurator: NSObject, MapConfiguratorTools {
     let locationManager: CLLocationManager
     let disposeBag: DisposeBag
 
-    let regionRadius: CLLocationDistance = 4000
+    let regionRadius: CLLocationDistance = 1000
     let locationValue: Variable<CLLocationCoordinate2D?> = Variable(nil)
 
     init(locationManager: CLLocationManager, disposeBag: DisposeBag) {

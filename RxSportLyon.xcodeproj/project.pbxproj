@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		245558AD2228BE8100EEDF44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 245558AB2228BE8100EEDF44 /* Localizable.strings */; };
+		245558B8222AD7CB00EEDF44 /* BartyCrouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245558B7222AD7CB00EEDF44 /* BartyCrouch.swift */; };
 		249D5CAF221DB16300AFA000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D5CAE221DB16300AFA000 /* AppDelegate.swift */; };
 		249D5CB4221DB16300AFA000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249D5CB2221DB16300AFA000 /* Main.storyboard */; };
 		249D5CB6221DB16600AFA000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249D5CB5221DB16600AFA000 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		245558B32229686800EEDF44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		245558B42229686800EEDF44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		245558B52229686800EEDF44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = ../RxSportLyon/Views/Storyboards/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		245558B7222AD7CB00EEDF44 /* BartyCrouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartyCrouch.swift; sourceTree = "<group>"; };
 		249D5CAB221DB16300AFA000 /* RxSportLyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSportLyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249D5CAE221DB16300AFA000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		249D5CB3221DB16300AFA000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				245558AB2228BE8100EEDF44 /* Localizable.strings */,
 				24C2AE75222608000060D721 /* Extensions.swift */,
+				245558B7222AD7CB00EEDF44 /* BartyCrouch.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				249D5CA9221DB16300AFA000 /* Resources */,
 				16AE7BB4D63687AB94CEB692 /* [CP] Embed Pods Frameworks */,
 				245558A82228BA4E00EEDF44 /* ShellScript */,
+				245558B6222AD70000EEDF44 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -405,6 +409,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		245558B6222AD70000EEDF44 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which bartycrouch > /dev/null; then\nbartycrouch update -x\nbartycrouch lint -x\nelse\necho \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
+		};
 		C0F5AF98A667938C70602503 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,6 +488,7 @@
 				24F5F0EC22249E4C0054F9CF /* MainAssembler.swift in Sources */,
 				24F5F0D7221DE1E20054F9CF /* RoundedButton.swift in Sources */,
 				24F5F0E422244DB80054F9CF /* EquipementReponse.swift in Sources */,
+				245558B8222AD7CB00EEDF44 /* BartyCrouch.swift in Sources */,
 				24C2AE76222608000060D721 /* Extensions.swift in Sources */,
 				24F5F0D92224311A0054F9CF /* BaseViewController.swift in Sources */,
 				24F5F0E222244ADF0054F9CF /* Endpoint.swift in Sources */,
