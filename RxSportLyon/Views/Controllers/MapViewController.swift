@@ -12,6 +12,7 @@ import RxSwift
 import MapKit
 import Swinject
 import SwinjectStoryboard
+import RxMKMapView
 
 class MapViewController: BaseViewController<MapViewModel> {
 
@@ -23,30 +24,51 @@ class MapViewController: BaseViewController<MapViewModel> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.mapConfigurator.getCurrentLocation()
     }
 
-    // MARK: Bindings & Callbacks
+    // MARK: Binding
 
     override func configureBindings(_ viewModel: MapViewModel) {
+        
+        // Fetch data according selected distance when taping `reloadButton`
         reloadButton.rx.tap
             .subscribe({ [weak self] _ in
                 self?.viewModel.reloadMap()
             })
             .disposed(by: disposeBag)
 
+        // Update `UISlider` value in `MapViewModel`
         slider.rx.value
             .bind(to: viewModel.sliderValue)
             .disposed(by: disposeBag)
+        
     }
+    
+    // MARK: Callbacks
 
     override func configureCallbacks(_ viewModel: MapViewModel) {
-
+        
+        viewModel.modelValue
+            .asDriver(onErrorJustReturn: [])
+            .drive(mapView.rx.annotations)
+            .disposed(by: disposeBag)
+        
+//        .subscribe(
+//            onSuccess: { annotations in
+//                let m = mapView.rx.annotation
+//            },
+//            onError: { error in
+//                viewModel.errorMessageValue.value = error.localizedDescription
+//            }
+//        ).disposed(by: disposeBag)
+        
+        // Handle `UIActivityIndicator` during fetching
         viewModel.isLoadingValue
             .asObservable()
             .bind(to: activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
 
+        // Handle a eventual error message after fetching by presenting an `UIAlertController`
         viewModel.errorMessageValue
             .asObservable()
             .bind { [weak self] errorDescription in
@@ -55,6 +77,7 @@ class MapViewController: BaseViewController<MapViewModel> {
             }
             .disposed(by: disposeBag)
 
+        // Center the `MKMapView` to the `locationValue` of the viewModel that is the current user location
         viewModel.mapConfigurator.locationValue
             .asObservable()
             .subscribe(onNext: { location in
@@ -68,6 +91,7 @@ class MapViewController: BaseViewController<MapViewModel> {
             })
             .disposed(by: disposeBag)
 
+        // Handle `UISlider` title when user change its value
         viewModel.sliderFormattedValue
             .asObservable()
             .subscribe(onNext: { formattedValue in

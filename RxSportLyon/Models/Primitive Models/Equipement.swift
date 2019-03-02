@@ -9,13 +9,13 @@
 import Foundation
 
 struct Equipement: Codable {
-    fileprivate let fields: EquipementFields
+    let fields: EquipementFields
 }
 
 struct EquipementFields: Codable {
 
-    fileprivate let name: String
-    fileprivate let coordinates: [Double]
+    let name: String
+    let coordinates: [Double]
 
     enum CodingKeys: String, CodingKey {
         case name = "equipementtypelib"

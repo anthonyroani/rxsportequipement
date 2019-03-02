@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B56EF005760EA296258A60FA96243A5C"
-               BuildableName = "SwinjectAutoregistration.framework"
-               BlueprintName = "SwinjectAutoregistration"
+               BlueprintIdentifier = "9C166F9B32BFACE8E9E3A7C082CEBD96"
+               BuildableName = "RxMKMapView.framework"
+               BlueprintName = "RxMKMapView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B56EF005760EA296258A60FA96243A5C"
-            BuildableName = "SwinjectAutoregistration.framework"
-            BlueprintName = "SwinjectAutoregistration"
+            BlueprintIdentifier = "9C166F9B32BFACE8E9E3A7C082CEBD96"
+            BuildableName = "RxMKMapView.framework"
+            BlueprintName = "RxMKMapView"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

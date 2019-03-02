@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 import RxSwift
 import Swinject
 
@@ -15,13 +16,14 @@ protocol MapViewUI {
     var sliderValue: Variable<Float> { get }
     var isLoadingValue: Variable<Bool> { get }
     var errorMessageValue: Variable<String?> { get }
-    var modelValue: Variable<[Equipement]?> { get }
+    var modelValue: Single<[MKPointAnnotation]> { get }
 }
 
 private protocol MapViewModeling {
     func reloadMap()
     func setup()
     func sliderValueFormatted(from value: Float) -> String?
+    func annotationPointsSingle() -> Single<[MKPointAnnotation]>
 }
 
 // MARK: MapViewModel and MapViewUI
@@ -32,7 +34,7 @@ class MapViewModel: MapViewUI {
     var sliderFormattedValue: Variable<String?> = Variable(nil)
     var errorMessageValue: Variable<String?> = Variable(nil)
     var isLoadingValue: Variable<Bool> = Variable(false)
-    var modelValue: Variable<[Equipement]?> = Variable(nil)
+    var modelValue: Single<[MKPointAnnotation]> = Single.just([])
 
     private let disposeBag: DisposeBag
     private let fetcher: EquipementFetcher
@@ -57,27 +59,45 @@ class MapViewModel: MapViewUI {
 
 extension MapViewModel: MapViewModeling {
 
+    /// Fetch equipements from server and convert them to an `Observable`
+    ///
+    /// - Returns: An `Observable` array of `MKPointAnnotation`
+    func annotationPointsSingle() -> Single<[MKPointAnnotation]> {
+        return fetcher.fetch().map ({ response in
+            return response.data.map({ (equipement) -> MKPointAnnotation in
+                let mapPoint = MKPointAnnotation()
+                mapPoint.title = equipement.fields.name
+                mapPoint.coordinate = CLLocationCoordinate2D(
+                    latitude: equipement.fields.coordinates[0],
+                    longitude: equipement.fields.coordinates[1]
+                )
+                return mapPoint
+            })
+        })
+    }
+    
     open func reloadMap() {
         isLoadingValue.value = true
-        fetcher.fetch().subscribe(
-            onNext: { [weak self] response in
-                self?.modelValue.value = response.data
+        annotationPointsSingle().subscribe(
+            onSuccess: { [weak self] annotationPoints in
+                self?.isLoadingValue.value = false
+                self?.modelValue = Single.just(annotationPoints)
             },
             onError: { [weak self] error in
-                self?.isLoadingValue.value = false
                 self?.errorMessageValue.value = error.localizedDescription
-            },
-            onCompleted: { [weak self] in
                 self?.isLoadingValue.value = false
+                self?.modelValue = Single.error(error)
             }
         ).disposed(by: disposeBag)
     }
 
-    /// When slider value change, set formatted value into `sliderFormattedValue` and notify controller.
+    /// sliderValue `Observable` : When `UISlider` value change, set formatted value into `sliderFormattedValue`
+    /// Set the map region to the current user location
     fileprivate func setup() {
         sliderValue.asObservable().subscribe(onNext: { [weak self] value in
             self?.sliderFormattedValue.value = self?.sliderValueFormatted(from: value)
         }).disposed(by: disposeBag)
+        mapConfigurator.getCurrentLocation()
     }
     
     /// Converts a `Float` value into a readable `String` for the `UISlider` of the controller.

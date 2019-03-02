@@ -25,7 +25,7 @@ class MapConfigurator: NSObject, MapConfiguratorTools {
     let locationManager: CLLocationManager
     let disposeBag: DisposeBag
 
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 4000
     let locationValue: Variable<CLLocationCoordinate2D?> = Variable(nil)
 
     init(locationManager: CLLocationManager, disposeBag: DisposeBag) {
@@ -39,7 +39,6 @@ class MapConfigurator: NSObject, MapConfiguratorTools {
 // MARK: MapConfiguring protocol
 
 extension MapConfigurator: MapConfiguring {
-
     func getCurrentLocation() {
         self.locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -48,7 +47,6 @@ extension MapConfigurator: MapConfiguring {
             locationManager.startUpdatingLocation()
         }
     }
-
 }
 
 // MARK: CLLocationManagerDelegate

@@ -19,7 +19,7 @@ enum FetcherError: Error {
 }
 
 protocol Fetcher {
-    func fetch() -> Observable<EquipementResponse>
+    func fetch() -> Single<EquipementResponse>
 }
 
 struct EquipementFetcher {
@@ -38,34 +38,35 @@ struct EquipementFetcher {
 
 extension EquipementFetcher: Fetcher {
 
-    func fetch() -> Observable<EquipementResponse> {
+    func fetch() -> Single<EquipementResponse> {
 
-        return Observable.create { observer in
+        return Single.create { single in
 
-            guard let jsonObservable = self.networking.getJSON(from: OpenDataSoft.sportEquipement) else {
-                observer.onError(NetworkingError.invalidURL)
+            // Request JSON.
+            guard let jsonSingle = self.networking.getJSON(from: OpenDataSoft.sportEquipement) else {
+                single(.error(NetworkingError.invalidURL))
                 return Disposables.create()
             }
 
-            jsonObservable
-                .subscribe(
-                    onNext: { json in
-                        do {
-                            let data = try JSONSerialization.data(withJSONObject: json)
-                            if let decoded = try self.parser.decodeJSON(type: EquipementResponse.self, from: data) {
-                                observer.onNext(decoded)
-                                observer.onCompleted()
-                            }
-                        } catch let error {
-                            observer.onError(error)
+            // Decode results and handle errors.
+            jsonSingle.subscribe(
+                onSuccess: { json in
+                    do {
+                        let data = try JSONSerialization.data(withJSONObject: json)
+                        if let decoded = try self.parser.decodeJSON(type: EquipementResponse.self, from: data) {
+                            print(decoded.data)
+                            single(.success(decoded))
                         }
-                    }, onError: { error in
-                        observer.onError(error)
-                    })
-                .disposed(by: self.disposeBag)
+                    } catch let error {
+                        single(.error(error))
+                    }
+                },
+                onError: { error in
+                    single(.error(error))
+                }
+            ).disposed(by: self.disposeBag)
 
             return Disposables.create()
-
         }
     }
 }
