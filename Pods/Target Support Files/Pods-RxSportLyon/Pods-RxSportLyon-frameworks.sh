@@ -155,7 +155,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/RxMKMapView/RxMKMapView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxMapKit/RxMapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwinjectAutoregistration/SwinjectAutoregistration.framework"
@@ -164,7 +164,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/RxMKMapView/RxMKMapView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxMapKit/RxMapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwinjectAutoregistration/SwinjectAutoregistration.framework"

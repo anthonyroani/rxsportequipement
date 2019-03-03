@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double RxMKMapViewVersionNumber;
-FOUNDATION_EXPORT const unsigned char RxMKMapViewVersionString[];
+FOUNDATION_EXPORT double RxMapKitVersionNumber;
+FOUNDATION_EXPORT const unsigned char RxMapKitVersionString[];
 

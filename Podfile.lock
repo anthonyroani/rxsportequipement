@@ -2,9 +2,9 @@ PODS:
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
-  - RxMKMapView (4.3.0):
-    - RxCocoa (~> 4.3)
-    - RxSwift (~> 4.3)
+  - RxMapKit (1.2.0):
+    - RxCocoa (~> 4.2)
+    - RxSwift (~> 4.2)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
   - SwiftLint (0.30.1)
@@ -16,7 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - RxCocoa (~> 4.0)
-  - RxMKMapView
+  - RxMapKit
   - RxSwift (~> 4.0)
   - SwiftLint
   - Swinject (~> 2.5.0)
@@ -27,7 +27,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - RxAtomic
     - RxCocoa
-    - RxMKMapView
+    - RxMapKit
     - RxSwift
     - SwiftLint
     - Swinject
@@ -37,13 +37,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxMKMapView: 71f1a69a5e3b889662a6ec430006324974418d0c
+  RxMapKit: 5c8cc66f231fc8b75a2e58eb37f6c6420787585b
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
   SwinjectAutoregistration: 0502a16e5f5baf181be80dc9510e0efa29130485
   SwinjectStoryboard: 688f096033103e66ffcf6ca678211acd7d7be505
 
-PODFILE CHECKSUM: 3ded205f1b8d1d0dda0f02af3906dcecb1086cc5
+PODFILE CHECKSUM: 4458b1e185ca6c2095afcf09b80c47d714bc95b6
 
 COCOAPODS: 1.6.0.beta.2

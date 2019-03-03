@@ -7,51 +7,53 @@
 //
 
 import UIKit
+import MapKit
 import RxCocoa
 import RxSwift
-import MapKit
+import RxMapKit
 import Swinject
 import SwinjectStoryboard
-import RxMKMapView
 
 class MapViewController: BaseViewController<MapViewModel> {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var reloadButton: RoundedButton!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var kilometersLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.mapConfigurator.configure(mapView: mapView)
     }
     
     // MARK: Binding
     
     override func configureBindings(_ viewModel: MapViewModel) {
-        
-        // Fetch data according selected distance when taping `reloadButton`
-        reloadButton.rx.tap
-            .subscribe({ [weak self] _ in
-                self?.viewModel.reloadMap()
-            })
-            .disposed(by: disposeBag)
-        
         // Update `UISlider` value in `MapViewModel`
         slider.rx.value
             .bind(to: viewModel.sliderValue)
             .disposed(by: disposeBag)
-        
     }
     
     // MARK: Callbacks
     
     override func configureCallbacks(_ viewModel: MapViewModel) {
         
+        // Handle received equipements
         viewModel.modelValue
-            .asDriver()
-            .drive(mapView.rx.annotations)
-            .disposed(by: disposeBag)
+        .asObservable()
+        .observeOn(MainScheduler.instance)
+        .subscribe(
+            onNext: { [weak self] annotations in
+                if let old = self?.mapView.annotations {
+                    self?.mapView.removeAnnotations(old)
+                    self?.mapView.addAnnotations(annotations)
+                }
+            }, onError: { [weak self] error in
+                self?.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        )
+        .disposed(by: disposeBag)
         
         // Handle `UIActivityIndicator` during fetching
         viewModel.isLoadingValue
@@ -68,20 +70,6 @@ class MapViewController: BaseViewController<MapViewModel> {
             }
             .disposed(by: disposeBag)
         
-        // Center the `MKMapView` to the `locationValue` of the viewModel that is the current user location
-        viewModel.mapConfigurator.locationValue
-            .asObservable()
-            .subscribe(onNext: { location in
-                guard let location = location else { return }
-                let coordinateRegion = MKCoordinateRegion(
-                    center: location,
-                    latitudinalMeters: viewModel.mapConfigurator.regionRadius,
-                    longitudinalMeters: viewModel.mapConfigurator.regionRadius
-                )
-                self.mapView.setRegion(coordinateRegion, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
         // Handle `UISlider` title when user change its value
         viewModel.sliderFormattedValue
             .asObservable()
@@ -89,6 +77,25 @@ class MapViewController: BaseViewController<MapViewModel> {
                 self.kilometersLabel.text = formattedValue
             })
             .disposed(by: disposeBag)
+        
+        viewModel.mapConfigurator.locationValue
+            .asObservable()
+            .subscribe(onNext: { [weak self] location in
+                if let mapCentered = self?.viewModel.mapCentered {
+                    if !mapCentered {
+                        if let location = location {
+                            let region = MKCoordinateRegion(
+                                center: location,
+                                latitudinalMeters: viewModel.mapConfigurator.regionRadius,
+                                longitudinalMeters: viewModel.mapConfigurator.regionRadius
+                            )
+                            self?.mapView.setRegion(region, animated: true)
+                            self?.viewModel.mapCentered = true
+                        }
+                    }
+                }
+            }).disposed(by: disposeBag)
+        
     }
     
 }

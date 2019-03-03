@@ -14,12 +14,11 @@ import RxSwift
 
 enum FetcherError: Error {
     case dataEmpty
-    case failDecoding
     case networkError(Error)
 }
 
 protocol Fetcher {
-    func fetch() -> Single<EquipementResponse>
+    func fetch(parameters: [Parameter]) -> Single<EquipementResponse>
 }
 
 struct EquipementFetcher {
@@ -38,12 +37,12 @@ struct EquipementFetcher {
 
 extension EquipementFetcher: Fetcher {
 
-    func fetch() -> Single<EquipementResponse> {
+    func fetch(parameters: [Parameter]) -> Single<EquipementResponse> {
 
         return Single.create { single in
 
             // Request JSON.
-            guard let jsonSingle = self.networking.getJSON(from: OpenDataSoft.sportEquipement) else {
+            guard let jsonSingle = self.networking.getJSON(from: OpenDataSoft.sportEquipement, parameters: parameters) else {
                 single(.error(NetworkingError.invalidURL))
                 return Disposables.create()
             }
@@ -54,7 +53,6 @@ extension EquipementFetcher: Fetcher {
                     do {
                         let data = try JSONSerialization.data(withJSONObject: json)
                         if let decoded = try self.parser.decodeJSON(type: EquipementResponse.self, from: data) {
-                            print(decoded.data)
                             single(.success(decoded))
                         }
                     } catch let error {

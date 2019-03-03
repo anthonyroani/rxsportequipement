@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C166F9B32BFACE8E9E3A7C082CEBD96"
-               BuildableName = "RxMKMapView.framework"
-               BlueprintName = "RxMKMapView"
+               BlueprintIdentifier = "76D3B7EBA7239B8207C59EA4743E6207"
+               BuildableName = "RxMapKit.framework"
+               BlueprintName = "RxMapKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9C166F9B32BFACE8E9E3A7C082CEBD96"
-            BuildableName = "RxMKMapView.framework"
-            BlueprintName = "RxMKMapView"
+            BlueprintIdentifier = "76D3B7EBA7239B8207C59EA4743E6207"
+            BuildableName = "RxMapKit.framework"
+            BlueprintName = "RxMapKit"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

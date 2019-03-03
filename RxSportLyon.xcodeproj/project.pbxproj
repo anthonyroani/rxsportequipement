@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		245558AD2228BE8100EEDF44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 245558AB2228BE8100EEDF44 /* Localizable.strings */; };
 		245558B8222AD7CB00EEDF44 /* BartyCrouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245558B7222AD7CB00EEDF44 /* BartyCrouch.swift */; };
+		245FE7CB222AEFCF006B960E /* Lyon.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 245FE7CA222AEFCF006B960E /* Lyon.gpx */; };
 		249D5CAF221DB16300AFA000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D5CAE221DB16300AFA000 /* AppDelegate.swift */; };
 		249D5CB4221DB16300AFA000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249D5CB2221DB16300AFA000 /* Main.storyboard */; };
 		249D5CB6221DB16600AFA000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249D5CB5221DB16600AFA000 /* Assets.xcassets */; };
@@ -46,10 +47,8 @@
 		13B906A1749ADC5E6787337B /* Pods-RxSportLyon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSportLyon.debug.xcconfig"; path = "Target Support Files/Pods-RxSportLyon/Pods-RxSportLyon.debug.xcconfig"; sourceTree = "<group>"; };
 		245558AA2228BD2100EEDF44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		245558AC2228BE8100EEDF44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = RxSportLyon/Views/Storyboards/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
-		245558B32229686800EEDF44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		245558B42229686800EEDF44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		245558B52229686800EEDF44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = ../RxSportLyon/Views/Storyboards/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		245558B7222AD7CB00EEDF44 /* BartyCrouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartyCrouch.swift; sourceTree = "<group>"; };
+		245FE7CA222AEFCF006B960E /* Lyon.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Lyon.gpx; sourceTree = "<group>"; };
 		249D5CAB221DB16300AFA000 /* RxSportLyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSportLyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249D5CAE221DB16300AFA000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		249D5CB3221DB16300AFA000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +62,9 @@
 		24C2AE6F2225A6B70060D721 /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
 		24C2AE75222608000060D721 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		24C2AE7722261A800060D721 /* MapConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConfigurator.swift; sourceTree = "<group>"; };
+		24D5BD3B222AED8D00C378FD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		24D5BD3C222AED8D00C378FD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		24D5BD3D222AED8D00C378FD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = ../Views/Storyboards/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24F5F0C1221DBAB50054F9CF /* Equipement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipement.swift; sourceTree = "<group>"; };
 		24F5F0C8221DBF6D0054F9CF /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		24F5F0D6221DE1E20054F9CF /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -102,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				249D5CAD221DB16300AFA000 /* RxSportLyon */,
-				24C2AE74222607F70060D721 /* Utils */,
 				249D5CC2221DB16700AFA000 /* RxSportLyonTests */,
 				249D5CAC221DB16300AFA000 /* Products */,
 				F00E4ECCD62A7DE4A18C10FA /* Pods */,
@@ -124,6 +125,8 @@
 			children = (
 				249D5CAE221DB16300AFA000 /* AppDelegate.swift */,
 				249D5CBA221DB16600AFA000 /* Info.plist */,
+				24C2AE74222607F70060D721 /* Utils */,
+				24F5F0C6221DBF2C0054F9CF /* Resources */,
 				24F5F0DE22244A600054F9CF /* Dependencies  */,
 				249D5CD1221DB3A600AFA000 /* Models */,
 				249D5CD2221DB3AA00AFA000 /* Views */,
@@ -162,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				24F5F0D5221DE1B80054F9CF /* Custom UIViews */,
-				24F5F0C6221DBF2C0054F9CF /* Resources */,
 				24F5F0C5221DBF1D0054F9CF /* Storyboards */,
 				249D5CCE221DB38D00AFA000 /* Controllers */,
 			);
@@ -199,9 +201,11 @@
 		24F5F0C6221DBF2C0054F9CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				245FE7CA222AEFCF006B960E /* Lyon.gpx */,
 				249D5CB5221DB16600AFA000 /* Assets.xcassets */,
 			);
-			path = Resources;
+			name = Resources;
+			path = Views/Resources;
 			sourceTree = "<group>";
 		};
 		24F5F0D1221DCD4F0054F9CF /* Primitive Models */ = {
@@ -343,6 +347,7 @@
 			files = (
 				249D5CB9221DB16600AFA000 /* LaunchScreen.storyboard in Resources */,
 				245558AD2228BE8100EEDF44 /* Localizable.strings in Resources */,
+				245FE7CB222AEFCF006B960E /* Lyon.gpx in Resources */,
 				249D5CB6221DB16600AFA000 /* Assets.xcassets in Resources */,
 				249D5CB4221DB16300AFA000 /* Main.storyboard in Resources */,
 			);
@@ -369,7 +374,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-RxSportLyon/Pods-RxSportLyon-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxMKMapView/RxMKMapView.framework",
+				"${BUILT_PRODUCTS_DIR}/RxMapKit/RxMapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectAutoregistration/SwinjectAutoregistration.framework",
@@ -381,7 +386,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxMKMapView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxMapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectAutoregistration.framework",
@@ -518,7 +523,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				245558AC2228BE8100EEDF44 /* en */,
-				245558B52229686800EEDF44 /* fr */,
+				24D5BD3D222AED8D00C378FD /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -528,7 +533,7 @@
 			children = (
 				249D5CB3221DB16300AFA000 /* Base */,
 				245558AA2228BD2100EEDF44 /* en */,
-				245558B32229686800EEDF44 /* fr */,
+				24D5BD3B222AED8D00C378FD /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -537,7 +542,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				249D5CB8221DB16600AFA000 /* Base */,
-				245558B42229686800EEDF44 /* fr */,
+				24D5BD3C222AED8D00C378FD /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -21,11 +21,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwT-Vy-ROy" userLabel="Background">
-                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="533.5" width="375" height="133.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBn-MW-SA2" userLabel="Bottom container">
-                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="533.5" width="375" height="133.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eA-PL-ucG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
@@ -35,7 +35,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Sgc-tu-FNs">
-                                        <rect key="frame" x="30" y="28" width="315" height="144"/>
+                                        <rect key="frame" x="30" y="23" width="315" height="88"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZONE DE RECHERCHE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrd-DE-VUC">
                                                 <rect key="frame" x="0.0" y="0.0" width="128.5" height="16"/>
@@ -56,44 +56,26 @@
                                                     <constraint firstAttribute="height" constant="30" id="vLe-tx-Dmo"/>
                                                 </constraints>
                                             </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suw-cz-am9" customClass="RoundedButton" customModule="RxSportLyon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="94" width="315" height="50"/>
-                                                <color key="backgroundColor" red="0.8749257922" green="0.38372838500000001" blue="0.42790943380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="FER-Yn-Fai"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
-                                                <state key="normal" title="Rechercher">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="ayq-8H-seJ" firstAttribute="leading" secondItem="Sgc-tu-FNs" secondAttribute="leading" id="7kZ-MP-ul4"/>
                                             <constraint firstAttribute="trailing" secondItem="ayq-8H-seJ" secondAttribute="trailing" id="XwS-vw-OHr"/>
-                                            <constraint firstAttribute="trailing" secondItem="suw-cz-am9" secondAttribute="trailing" id="fNY-lp-jFu"/>
-                                            <constraint firstItem="suw-cz-am9" firstAttribute="leading" secondItem="Sgc-tu-FNs" secondAttribute="leading" id="j05-73-92Q"/>
                                         </constraints>
                                     </stackView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="b1Y-bL-7wN">
-                                        <rect key="frame" x="305" y="137" width="20" height="20"/>
-                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="325" y="21" width="20" height="20"/>
+                                        <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Sgc-tu-FNs" firstAttribute="centerY" secondItem="uBn-MW-SA2" secondAttribute="centerY" id="4uS-GP-kik"/>
+                                    <constraint firstItem="b1Y-bL-7wN" firstAttribute="trailing" secondItem="Sgc-tu-FNs" secondAttribute="trailing" id="Bn2-Wp-XQD"/>
                                     <constraint firstItem="4eA-PL-ucG" firstAttribute="leading" secondItem="uBn-MW-SA2" secondAttribute="leading" id="CZa-3F-2mE"/>
                                     <constraint firstAttribute="trailing" secondItem="Sgc-tu-FNs" secondAttribute="trailing" constant="30" id="DQl-Rx-0RA"/>
                                     <constraint firstItem="Sgc-tu-FNs" firstAttribute="leading" secondItem="uBn-MW-SA2" secondAttribute="leading" constant="30" id="Emq-dr-mEp"/>
-                                    <constraint firstItem="b1Y-bL-7wN" firstAttribute="centerY" secondItem="suw-cz-am9" secondAttribute="centerY" id="MDC-Vl-xW2"/>
+                                    <constraint firstItem="b1Y-bL-7wN" firstAttribute="centerY" secondItem="Nrd-DE-VUC" secondAttribute="centerY" id="IG9-QB-yt3"/>
                                     <constraint firstItem="4eA-PL-ucG" firstAttribute="top" secondItem="uBn-MW-SA2" secondAttribute="top" id="NJc-qD-F1G"/>
-                                    <constraint firstItem="b1Y-bL-7wN" firstAttribute="trailing" secondItem="suw-cz-am9" secondAttribute="trailing" constant="-20" id="SP1-xi-I3a"/>
                                     <constraint firstItem="Sgc-tu-FNs" firstAttribute="centerX" secondItem="uBn-MW-SA2" secondAttribute="centerX" id="aeC-pd-7tn"/>
                                     <constraint firstAttribute="trailing" secondItem="4eA-PL-ucG" secondAttribute="trailing" id="wHG-ky-ruN"/>
                                 </constraints>
@@ -104,7 +86,7 @@
                             <constraint firstItem="RwT-Vy-ROy" firstAttribute="leading" secondItem="uBn-MW-SA2" secondAttribute="leading" id="2ld-Lo-Lle"/>
                             <constraint firstItem="RwT-Vy-ROy" firstAttribute="top" secondItem="uBn-MW-SA2" secondAttribute="top" id="92K-PO-aWm"/>
                             <constraint firstItem="RwT-Vy-ROy" firstAttribute="trailing" secondItem="uBn-MW-SA2" secondAttribute="trailing" id="CYY-VQ-aVR"/>
-                            <constraint firstItem="uBn-MW-SA2" firstAttribute="height" secondItem="ZfM-n8-5pG" secondAttribute="height" multiplier="0.3" id="DW6-o5-5Zt"/>
+                            <constraint firstItem="uBn-MW-SA2" firstAttribute="height" secondItem="ZfM-n8-5pG" secondAttribute="height" multiplier="0.2" id="DW6-o5-5Zt"/>
                             <constraint firstItem="ZfM-n8-5pG" firstAttribute="bottom" secondItem="uBn-MW-SA2" secondAttribute="bottom" id="Ece-EJ-l5x"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZfM-n8-5pG" secondAttribute="trailing" id="NVg-kg-334"/>
                             <constraint firstItem="uBn-MW-SA2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Npi-st-fgm"/>
@@ -120,7 +102,6 @@
                         <outlet property="activityIndicator" destination="b1Y-bL-7wN" id="X02-10-rDn"/>
                         <outlet property="kilometersLabel" destination="Psq-zZ-WO3" id="4Y0-GP-Md5"/>
                         <outlet property="mapView" destination="ZfM-n8-5pG" id="71j-yc-d5a"/>
-                        <outlet property="reloadButton" destination="suw-cz-am9" id="j6r-YJ-uVp"/>
                         <outlet property="slider" destination="ayq-8H-seJ" id="W6t-Ap-8nE"/>
                     </connections>
                 </viewController>

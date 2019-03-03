@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B56EF005760EA296258A60FA96243A5C"
+               BlueprintIdentifier = "F692E9CC88241D2A74B50AA23FECA0EE"
                BuildableName = "SwinjectAutoregistration.framework"
                BlueprintName = "SwinjectAutoregistration"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B56EF005760EA296258A60FA96243A5C"
+            BlueprintIdentifier = "F692E9CC88241D2A74B50AA23FECA0EE"
             BuildableName = "SwinjectAutoregistration.framework"
             BlueprintName = "SwinjectAutoregistration"
             ReferencedContainer = "container:Pods.xcodeproj">

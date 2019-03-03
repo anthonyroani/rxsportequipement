@@ -14,14 +14,28 @@ enum NetworkingError: Error {
 }
 
 protocol Networking {
-    func getJSON(from: Endpoint) -> Single<Any>?
+    func getJSON(from: Endpoint, parameters: [Parameter]) -> Single<Any>?
 }
 
-struct HTTPNetworking: Networking {
-    func getJSON(from: Endpoint) -> Single<Any>? {
-        guard let url = URL(string: from.path) else { return nil }
-        return URLSession.shared.rx.json(request: URLRequest(url: url))
-        .retry(3)
-        .asSingle()
+private protocol NetworkingHelper {
+    func buildURL(from: Endpoint, with parameters: [Parameter]) -> URL?
+}
+
+struct HTTPNetworking: Networking, NetworkingHelper {
+    
+    fileprivate func buildURL(from: Endpoint, with parameters: [Parameter]) -> URL? {
+        let url = parameters.reduce(from.path, { url, parameter in
+            return url + parameter.name.identifier + parameter.value
+        })
+        return URL(string: url)
     }
+    
+    func getJSON(from: Endpoint, parameters: [Parameter]) -> Single<Any>? {
+        guard let url = buildURL(from: from, with: parameters) else { return nil }
+        return URLSession.shared.rx
+            .json(request: URLRequest(url: url))
+            .retry(3)
+            .asSingle()
+    }
+    
 }

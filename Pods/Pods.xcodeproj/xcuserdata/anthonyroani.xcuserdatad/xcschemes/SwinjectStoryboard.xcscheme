@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "68825E44A9A7DEA1AB3EABED039B9096"
+               BlueprintIdentifier = "A1DC1C938B304C44A598858F4BAF0BD9"
                BuildableName = "SwinjectStoryboard.framework"
                BlueprintName = "SwinjectStoryboard"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "68825E44A9A7DEA1AB3EABED039B9096"
+            BlueprintIdentifier = "A1DC1C938B304C44A598858F4BAF0BD9"
             BuildableName = "SwinjectStoryboard.framework"
             BlueprintName = "SwinjectStoryboard"
             ReferencedContainer = "container:Pods.xcodeproj">

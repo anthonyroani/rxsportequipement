@@ -11,25 +11,31 @@ import MapKit
 import RxSwift
 import Swinject
 
+enum MapError: Error {
+    case invalidCoordinates
+}
+
 protocol MapViewUI {
     var sliderFormattedValue: Variable<String?> { get }
     var sliderValue: Variable<Float> { get }
     var isLoadingValue: Variable<Bool> { get }
     var errorMessageValue: Variable<String?> { get }
     var modelValue: Variable<[MKPointAnnotation]> { get }
+    var mapCentered: Bool { get }
 }
 
 private protocol MapViewModeling {
-    func reloadMap()
+    func annotationPointsSingle() -> Single<[MKPointAnnotation]>
+    func searchEquipements()
     func setup()
     func sliderValueFormatted(from value: Float) -> String?
-    func annotationPointsSingle() -> Single<[MKPointAnnotation]>
 }
 
 // MARK: MapViewModel and MapViewUI
 
 class MapViewModel: MapViewUI {
-
+    
+    var mapCentered: Bool = false
     var sliderValue: Variable<Float> = Variable(0.0)
     var sliderFormattedValue: Variable<String?> = Variable(nil)
     var errorMessageValue: Variable<String?> = Variable(nil)
@@ -61,9 +67,22 @@ extension MapViewModel: MapViewModeling {
 
     /// Fetch equipements from server and convert them to an `Observable`
     ///
-    /// - Returns: An `Observable` array of `MKPointAnnotation`
+    /// - Returns: An `Single` array of `MKPointAnnotation`
     func annotationPointsSingle() -> Single<[MKPointAnnotation]> {
-        return fetcher.fetch().map ({ response in
+        
+        guard let latitude = mapConfigurator.locationValue.value?.latitude,
+              let longitude = mapConfigurator.locationValue.value?.longitude else {
+                return Single.create { single in
+                        single(.error(MapError.invalidCoordinates))
+                        return Disposables.create()
+                }
+        }
+        
+        let searchRadius = Int(ceil(self.sliderValue.value * 1000))
+        let geofilterParameterValue = "\(latitude)%2C+\(longitude)%2C+\(searchRadius)"
+        let geofilterParameter = Parameter(name: .geofilterDistance, value: geofilterParameterValue)
+        
+        return fetcher.fetch(parameters: [geofilterParameter]).map ({ response in
             return response.data.map({ (equipement) -> MKPointAnnotation in
                 let mapPoint = MKPointAnnotation()
                 mapPoint.title = equipement.fields.name
@@ -76,7 +95,7 @@ extension MapViewModel: MapViewModeling {
         })
     }
     
-    open func reloadMap() {
+    open func searchEquipements() {
         isLoadingValue.value = true
         annotationPointsSingle().subscribe(
             onSuccess: { [weak self] annotationPoints in
@@ -91,13 +110,24 @@ extension MapViewModel: MapViewModeling {
         ).disposed(by: disposeBag)
     }
 
-    /// sliderValue `Observable` : When `UISlider` value change, set formatted value into `sliderFormattedValue`
-    /// Set the map region to the current user location
+    /// Set observers and start getting position of the user
     fileprivate func setup() {
+        
+        mapConfigurator.getCurrentLocation()
+
+        mapConfigurator.locationValue
+        .asObservable()
+        .throttle(5, scheduler: MainScheduler.instance)
+        .subscribe(
+            onNext: { [weak self] _ in
+                self?.searchEquipements()
+            })
+        .disposed(by: disposeBag)
+        
         sliderValue.asObservable().subscribe(onNext: { [weak self] value in
             self?.sliderFormattedValue.value = self?.sliderValueFormatted(from: value)
         }).disposed(by: disposeBag)
-        mapConfigurator.getCurrentLocation()
+        
     }
     
     /// Converts a `Float` value into a readable `String` for the `UISlider` of the controller.

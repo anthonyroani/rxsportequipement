@@ -8,7 +8,7 @@ target 'RxSportLyon' do
   # Pods for RxSportLyon
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
-    pod 'RxMKMapView'
+    pod 'RxMapKit'    
     pod 'SwinjectStoryboard'
     pod 'SwiftLint'
     pod 'SwinjectAutoregistration', '2.5.0'

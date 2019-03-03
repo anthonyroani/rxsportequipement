@@ -5,6 +5,8 @@
 //  Created by Anthony Roani on 02/03/2019.
 //  Copyright © 2019 Anthony Roani. All rights reserved.
 //
+//  Used by BartyCrounch to update automatically Localizable file of storyboards
+// 
 //  This file is required in order for the `transform` task of the translation helper tool BartyCrouch to work.
 //  See here for more details: https://github.com/Flinesoft/BartyCrouch
 //

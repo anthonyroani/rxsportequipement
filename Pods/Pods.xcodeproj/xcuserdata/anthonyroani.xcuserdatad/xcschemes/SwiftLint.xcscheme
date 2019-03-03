@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8639EE833B565DD58F1D104DBEABB8EF"
+               BlueprintIdentifier = "F7AFAD5053618FB7FBA924869C4B84B5"
                BuildableName = "SwiftLint"
                BlueprintName = "SwiftLint"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8639EE833B565DD58F1D104DBEABB8EF"
+            BlueprintIdentifier = "F7AFAD5053618FB7FBA924869C4B84B5"
             BuildableName = "SwiftLint"
             BlueprintName = "SwiftLint"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -9,9 +9,11 @@
 import UIKit
 import Swinject
 import MapKit
+import RxMapKit
 import RxSwift
 
 protocol MapConfiguring {
+    func configure(mapView: MKMapView)
     func getCurrentLocation()
 }
 
@@ -33,12 +35,12 @@ class MapConfigurator: NSObject, MapConfiguratorTools {
         self.disposeBag = disposeBag
         super.init()
     }
-
 }
 
 // MARK: MapConfiguring protocol
 
 extension MapConfigurator: MapConfiguring {
+    
     func getCurrentLocation() {
         self.locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -47,14 +49,30 @@ extension MapConfigurator: MapConfiguring {
             locationManager.startUpdatingLocation()
         }
     }
+    
+    func configure(mapView: MKMapView) {
+        mapView.showsUserLocation = true
+        mapView.rx.handleRendererForOverlay { (_, overlay) in
+            if overlay is MKCircle {
+                let renderer = MKCircleRenderer(overlay: overlay)
+                renderer.strokeColor = UIColor.red.withAlphaComponent(0.6)
+                renderer.lineWidth = 1
+                renderer.fillColor = UIColor.red.withAlphaComponent(0.3)
+                return renderer
+            } else {
+                return MKOverlayRenderer(overlay: overlay)
+            }
+        }
+    }
+    
 }
 
 // MARK: CLLocationManagerDelegate
 
 extension MapConfigurator: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        self.locationValue.value = location
+        guard let location = manager.location else { return }
+        self.locationValue.value = location.coordinate
     }
 }
 
