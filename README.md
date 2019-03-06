@@ -2,7 +2,7 @@
 
 RxSportEquipement is a Swift example project that search for sport equipements in Lyon (France) according user's location from the OpenDataSoft API.
 
-It simulates a user's movements from a GPX file, the perimeter of the search area can vary between 0 and 10 kilometers according the `UISlider` value.
+It simulates a user's movements from a `GPX` file, the perimeter of the search area can vary between 0 and 10 kilometers according the `UISlider` value.
 
 # Architecture
 
